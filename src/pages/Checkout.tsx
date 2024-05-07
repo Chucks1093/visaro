@@ -5,7 +5,7 @@ import CheckoutReceipt from "../components/CheckoutReceipt";
 type Status = "paid" | "pending" | null;
 
 function Checkout() {
-  const [searchParams, _setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
   const status = searchParams.get("status") as Status;
@@ -16,7 +16,7 @@ function Checkout() {
       <div className="flex h-[30rem] flex-col items-center justify-center bg-gray-300 font-jersey text-5xl md:text-7xl">
         {status === "paid" ? (
           <div>
-            <h1>Thank you for your purchase!</h1>
+            <h1 className="text-center">Thank you for your purchase!</h1>
             {ref && (
               <>
                 <p className="mt-6 text-center font-sans text-base">

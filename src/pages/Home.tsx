@@ -17,6 +17,8 @@ function Home() {
     category: keyof typeof currentImage;
   }>();
 
+  console.log(products)
+
   return (
     <Fragment>
       <header className="fade__in relative flex h-[30rem] items-center justify-center">

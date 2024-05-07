@@ -11,7 +11,7 @@ function Error() {
   return (
     <div>
       <NavBar />
-      <h1 className="flex h-[30rem] items-center justify-center bg-gray-300 font-jersey text-5xl md:text-7xl">
+      <h1 className="flex h-[30rem] items-center justify-center bg-gray-300 font-jersey text-5xl md:text-7xl text-center">
         {error.status} - {error.statusText}
       </h1>
       <div className="mt-4 justify-between gap-7 px-4 pb-7  md:flex md:px-12">

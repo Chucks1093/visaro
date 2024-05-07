@@ -82,7 +82,7 @@ function NavBar() {
                   className={`relative 	mb-4  block  pl-3 text-3xl  font-extrabold capitalize text-gray-500 before:absolute before:-bottom-1 before:-left-4 before:top-1/2 before:h-3 before:w-3 before:-translate-y-1/2 before:rounded-full before:bg-gray-500 ${
                     currentCategory == category ? "opacity-100" : "opacity-50"
                   } `}
-                  to={`/products/${category}`}
+                  to={`/category/${category}`}
                   onClick={() => setShowNav(false)}
                 >
                   {category}
