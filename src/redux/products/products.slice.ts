@@ -2,11 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Product } from './product.request';
 import { fetchProducts } from './product.request';
 import { getUniqueCategories } from '../store.utils';
+import productData from './product.data';
+
 
 const initialState = {
-	products: [] as Product[],
+	products: productData as Product[],
 	status: 'idle' as 'idle' | 'success' | 'failed',
-	categories: [] as Array<Product['category']>,
+	categories: getUniqueCategories(productData) as Array<Product['category']>,
 };
 
 const productSlice = createSlice({

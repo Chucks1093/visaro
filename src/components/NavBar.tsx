@@ -1,11 +1,9 @@
 import { NavLink, useParams } from "react-router-dom";
 import {
   selectCategories,
-  selectProductsStatus,
 } from "../redux/products/products.slice";
-import { useAppDispatch, useAppSelector } from "../redux/store";
-import { Fragment, useEffect, useState } from "react";
-import { fetchProducts } from "../redux/products/product.request";
+import { useAppSelector } from "../redux/store";
+import { Fragment, useState } from "react";
 import { selectCartItems } from "../redux/cart/cart.slice";
 
 const activeClassNames =
@@ -13,9 +11,7 @@ const activeClassNames =
 
 function NavBar() {
   const categories = useAppSelector(selectCategories);
-  const dispatch = useAppDispatch();
   const cartItems = useAppSelector(selectCartItems);
-  const productStatus = useAppSelector(selectProductsStatus);
   const { category: currentCategory } = useParams();
 
   const [showNav, setShowNav] = useState(false);
@@ -24,11 +20,7 @@ function NavBar() {
     setShowNav(!showNav);
   };
 
-  useEffect(() => {
-    if (productStatus == "idle") {
-      dispatch(fetchProducts());
-    }
-  }, []);
+
   return (
     <nav className=" fixed left-0 top-0 z-10 flex h-[10vh] w-full  items-center justify-between px-5  py-1">
       <NavLink to="/" className="flex items-center justify-between gap-1">
