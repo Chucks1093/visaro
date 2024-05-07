@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "../redux/store";
 import { useNavigate } from "react-router-dom";
 import { PaystackButton } from "react-paystack";
 
+
 // const sampleSuccess = {
 //   message: "Approved",
 //   redirecturl: "?trxref=T591177663955222&reference=T591177663955222",
@@ -49,7 +50,7 @@ function CheckoutForm() {
     },
     publicKey,
     text: `Pay - $${amount}`,
-    onSuccess: (transaction: any) => {
+    onSuccess: (transaction: {reference: string}) => {
       dispatch(emptyCart());
       navigate(`/checkout?status=paid&ref=${transaction.reference}`);
     },
