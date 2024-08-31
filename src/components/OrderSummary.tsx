@@ -45,10 +45,7 @@ function OrderSummary() {
           {cartItemTotalPrice}
         </h2>
       </div>
-      <button
-        onClick={() => navigate("/checkout", { replace: true })}
-        className="mt-4 w-full bg-blue-500 py-3 text-center font-bold text-white"
-      >
+      <button className="mt-4 w-full bg-blue-500 py-3 text-center font-bold text-white">
         Checkout
       </button>
     </div>
