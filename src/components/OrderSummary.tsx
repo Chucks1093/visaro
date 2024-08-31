@@ -6,6 +6,10 @@ function OrderSummary() {
   const navigate = useNavigate();
   const cartItemTotalPrice = useAppSelector(selectCartTotalPrice);
 
+  const EthereumIcon: any = () => {
+    return <i className="pi pi-ethereum"></i>;
+  };
+
   return (
     <div className="sticky  top-[10vh] h-fit md:w-[26%]">
       <h2 className="border-b border-b-gray-300 bg-gray-200 px-4 py-4 text-xl font-bold text-gray-500">
@@ -14,20 +18,32 @@ function OrderSummary() {
       <div className="bg-gray-200 py-5 [&>div]:mb-3 [&>div]:px-4 [&>div]:text-sm">
         <div className="flex items-center justify-between">
           <p>Subtotal</p>
-          <p className="">${cartItemTotalPrice}</p>
+          <p className="">
+            <EthereumIcon />
+            {cartItemTotalPrice}
+          </p>
         </div>
         <div className="flex items-center justify-between">
           <p>Shipping</p>
-          <p className="">$00</p>
+          <p className="">
+            <EthereumIcon />
+            00
+          </p>
         </div>
         <div className="flex items-center justify-between">
           <p className="text-green-500">Discount</p>
-          <p className="text-green-500">$00</p>
+          <p className="text-green-500">
+            <EthereumIcon />
+            00
+          </p>
         </div>
       </div>
       <div className="flex items-center justify-between bg-gray-300 px-4 py-3">
         <h2 className="font-bold">Total</h2>
-        <h2 className="font-bold">${cartItemTotalPrice}</h2>
+        <h2 className="font-bold">
+          <EthereumIcon />
+          {cartItemTotalPrice}
+        </h2>
       </div>
       <button
         onClick={() => navigate("/checkout", { replace: true })}

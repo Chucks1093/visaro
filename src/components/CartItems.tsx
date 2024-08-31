@@ -8,6 +8,7 @@ import { useAppDispatch } from "../redux/store";
 
 function CartItems(props: Product) {
   const dispatch = useAppDispatch();
+  const newPrice = props.price / 1000;
 
   const handleIncreaseBtn = () => {
     dispatch(increaseQuantity(props.id));
@@ -17,6 +18,10 @@ function CartItems(props: Product) {
   };
   const handleRemoveCartItem = () => {
     dispatch(removeFromCart(props.id));
+  };
+
+  const EthereumIcon: any = () => {
+    return <i className="pi pi-ethereum"></i>;
   };
   return (
     <div className=" mb-4 mt-4 grid grid-cols-cart_container_sm border-b border-b-slate-300 pb-5 md:grid-cols-cart_container_md">
@@ -34,7 +39,10 @@ function CartItems(props: Product) {
           <p className="text-sm text-gray-400">{props.category}</p>
         </div>
       </div>
-      <p className="hidden font-bold text-gray-500 md:block ">${props.price}</p>
+      <p className="hidden font-bold text-gray-500 md:block ">
+        <EthereumIcon />
+        {newPrice.toFixed(3)}
+      </p>
       <div className="hidden h-fit w-fit items-center gap-4 rounded-2xl bg-gray-200 px-3 py-1 md:flex">
         <img
           onClick={handleDecreaseBtn}
@@ -50,7 +58,10 @@ function CartItems(props: Product) {
           alt="plus-icon"
         />
       </div>
-      <div>{(props.quantity * props.price).toFixed(2)}</div>
+      <div>
+        <EthereumIcon />
+        {(props.quantity * newPrice).toFixed(3)}
+      </div>
       <button
         onClick={handleRemoveCartItem}
         className="h-7 w-7 rounded-full bg-gray-300 p-[.3rem]"

@@ -8,7 +8,6 @@ import { useAppDispatch, useAppSelector } from "../redux/store";
 import { useNavigate } from "react-router-dom";
 import { PaystackButton } from "react-paystack";
 
-
 // const sampleSuccess = {
 //   message: "Approved",
 //   redirecturl: "?trxref=T591177663955222&reference=T591177663955222",
@@ -22,6 +21,10 @@ import { PaystackButton } from "react-paystack";
 function CheckoutForm() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  const EthereumIcon: any = () => {
+    return <i className="pi pi-ethereum"></i>;
+  };
 
   const publicKey: string = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY;
   const amount = useAppSelector(selectCartTotalPrice);
@@ -50,7 +53,7 @@ function CheckoutForm() {
     },
     publicKey,
     text: `Pay - $${amount}`,
-    onSuccess: (transaction: {reference: string}) => {
+    onSuccess: (transaction: { reference: string }) => {
       dispatch(emptyCart());
       navigate(`/checkout?status=paid&ref=${transaction.reference}`);
     },
@@ -123,7 +126,8 @@ function CheckoutForm() {
             disabled
             className="w-full rounded border-2 border-blue-500 bg-blue-500 py-3 text-center font-bold text-white opacity-70"
           >
-            Pay - ${amount}
+            Pay - <EthereumIcon />
+            {amount}
           </button>
         ) : (
           <PaystackButton

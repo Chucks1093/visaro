@@ -49,7 +49,7 @@ const cartSlice = createSlice({
     selectCartTotalPrice: (state) => {
       let total = 0;
       for (const item of state.cartItems) {
-        total = total + item.quantity * item.price;
+        total = total + item.quantity * item.price/1000;
       }
       return total.toFixed(2);
     },
