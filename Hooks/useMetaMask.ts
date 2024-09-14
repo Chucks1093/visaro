@@ -10,10 +10,9 @@ export const useMetaMask = () => {
   const [isConnecting, setIsConnecting] = useState(false);
   const [account, setAccount] = useState(null);
   const [contract, setContract] = useState<Contract | null>(null);
-  //   const [amount, setamount] = useState(0);
 
-  const BASE_SEPOLIA_CHAIN_ID = "0x14A34";
-  const CONTRACT_ADDRESS = "0x8aD3fA67Ad83D75242D6e821530711a267B9E200";
+  const BASE_MAINNET_CHAIN_ID = "0x2105";
+  const CONTRACT_ADDRESS = "0x0b5c0017B8ca9300E51710Dc1160879d9fD77587";
   const amount = useAppSelector(selectCartTotalPrice);
 
   useEffect(() => {
@@ -25,17 +24,16 @@ export const useMetaMask = () => {
 
   const checkNetwork = async () => {
     if (window.ethereum) {
-      //THis variable checks if there exist metamask extension in a browser
       try {
         const chainId = await window?.ethereum.request({
           method: "eth_chainId",
-        }); //This give use of access to the users account
+        });
 
-        if (chainId !== BASE_SEPOLIA_CHAIN_ID) {
+        if (chainId !== BASE_MAINNET_CHAIN_ID) {
           try {
             await window.ethereum.request({
               method: "wallet_switchEthereumChain",
-              params: [{ chainId: BASE_SEPOLIA_CHAIN_ID }],
+              params: [{ chainId: BASE_MAINNET_CHAIN_ID }],
             });
           } catch (switchError: any) {
             if (switchError.code === 4902) {
@@ -44,25 +42,25 @@ export const useMetaMask = () => {
                   method: "wallet_addEthereumChain",
                   params: [
                     {
-                      chainId: BASE_SEPOLIA_CHAIN_ID,
-                      chainName: "Base Sepolia",
+                      chainId: BASE_MAINNET_CHAIN_ID,
+                      chainName: "Base Mainnet",
                       nativeCurrency: {
-                        name: "Sepolia ETH",
+                        name: "Ethereum",
                         symbol: "ETH",
                         decimals: 18,
                       },
-                      rpcUrls: ["https://sepolia.base.org"],
-                      blockExplorerUrls: ["https://sepolia.basescan.org"],
+                      rpcUrls: ["https://mainnet.base.org"],
+                      blockExplorerUrls: ["https://basescan.org/"],
                     },
                   ],
                 });
               } catch (addError) {
                 console.error("Failed to add network:", addError);
-                toast.error("Failed to add Base Sepolia network to MetaMask");
+                toast.error("Failed to add Base Mainnet network to MetaMask");
               }
             } else {
               console.error("Failed to switch network:", switchError);
-              toast.error("Failed to switch to Base Sepolia network");
+              toast.error("Failed to switch to Base Mainnet network");
             }
           }
         }
@@ -118,9 +116,6 @@ export const useMetaMask = () => {
     }
   };
 
-
-
-
   const handleDeposit = async () => {
     if (!contract) {
       console.error("Contract not initialized");
@@ -141,13 +136,6 @@ export const useMetaMask = () => {
       // Request account access if needed
       await window.ethereum.request({ method: "eth_requestAccounts" });
 
-      // Get the signer
-      // const provider = new ethers.BrowserProvider(window.ethereum);
-      // const signer = await provider.getSigner();
-
-      // Create a new instance of the contract with the signer
-      // const contractWithSigner = contract.connect(signer);
-      // Estimate gas
       const gasEstimate = await contract.deposit.estimateGas({
         value: amountWei,
       });
@@ -170,12 +158,17 @@ export const useMetaMask = () => {
       // Reset deposit amount
     } catch (error: any) {
       console.error("Error during deposit:", error);
+
+      if (error.code === 8453) {
+        toast.error("You rejected the transaction.");
+      }
+
       if (error.reason) {
         toast.error("Deposit failed: " + error.reason);
       } else if (error.data && error.data.message) {
         toast.error("Deposit failed: " + error.data.message);
       } else {
-        toast.error("Deposit failed. Check console for details.");
+        toast.error("Deposit failed. Insufficient funds.");
       }
     }
   };

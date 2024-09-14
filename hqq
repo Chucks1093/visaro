@@ -1,0 +1,89 @@
+[33mcommit 25cb0b006f423167b5c7ed1fafc15ee9505f977a[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Chucks1093 <aniokechukwudi7@gmail.com>
+Date:   Sat Sep 14 18:21:36 2024 +0100
+
+    Refactored handle deposit function
+
+[33mcommit aede769af2ddc232630068700a4527a7881c06c3[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Chucks1093 <aniokechukwudi7@gmail.com>
+Date:   Sat Aug 31 21:16:12 2024 +0100
+
+    Disabled checkout button
+
+[33mcommit 0e46d32212536b67b62a99f8a40a2754cac0cb5f[m
+Author: Chucks1093 <aniokechukwudi7@gmail.com>
+Date:   Sat Aug 31 16:54:46 2024 +0100
+
+    Change the currency symbol
+
+[33mcommit 04c352cdfcc1e928a8261f93d961588cb472963c[m
+Author: Sebastian Anioke <aniokechukwudi7@gmail.com>
+Date:   Tue May 7 16:16:25 2024 +0100
+
+    getting products data locally
+
+[33mcommit 7d3d0bff6662274cedd607c370e50e8c124ec52c[m
+Author: Sebastian Anioke <aniokechukwudi7@gmail.com>
+Date:   Tue May 7 16:01:18 2024 +0100
+
+    tested app
+
+[33mcommit 365f04c04233e276aa2960de3300cb8bdef24a7c[m
+Author: Sebastian Anioke <aniokechukwudi7@gmail.com>
+Date:   Tue May 7 15:45:24 2024 +0100
+
+    resolved navlinks on mobile
+
+[33mcommit f77ed94eb2425220cd8ee0d2d665bdf850efa3ba[m
+Author: Brown <memoyebrown@gmail.com>
+Date:   Tue May 7 12:51:12 2024 +0100
+
+    edit readme.md
+
+[33mcommit 3ff49d4b7f9988778c428800ff56dab1033bacf0[m
+Author: Brown <memoyebrown@gmail.com>
+Date:   Tue May 7 12:50:48 2024 +0100
+
+    edit readme.md
+
+[33mcommit 35c559f36fa2d26311c36844e43fafdb953d7387[m
+Author: Brown <memoyebrown@gmail.com>
+Date:   Tue May 7 12:37:56 2024 +0100
+
+    errorElement added in
+
+[33mcommit e58c2fc059289499293e7c97eecc1165b54dd1bc[m
+Author: Brown <memoyebrown@gmail.com>
+Date:   Tue May 7 12:24:25 2024 +0100
+
+    payment integration done
+
+[33mcommit 4203abd7e911cbedd0f1db02d0f1bddb7f0aec35[m
+Author: Sebastian Anioke <aniokechukwudi7@gmail.com>
+Date:   Sun May 5 10:38:09 2024 +0100
+
+    added config for vercel
+
+[33mcommit 4eb8065a1449f0c3ec9f6e9253ba0563138a4ef8[m
+Author: Sebastian Anioke <aniokechukwudi7@gmail.com>
+Date:   Sun May 5 10:25:49 2024 +0100
+
+    made app responsive and optimized images
+
+[33mcommit fa0997f29eef11d822efca324350bf790972bcf1[m
+Author: Sebastian Anioke <aniokechukwudi7@gmail.com>
+Date:   Sat May 4 14:42:15 2024 +0100
+
+    finished cart page
+
+[33mcommit 35eec65ec9920279c0c797f510071d23b0ac6702[m
+Author: Sebastian Anioke <aniokechukwudi7@gmail.com>
+Date:   Sat May 4 01:46:55 2024 +0100
+
+    configure api key and request to api
+
+[33mcommit 6ea2453602f2d80bbc3a1b323b7c78f2f67c75dc[m
+Author: Sebastian Anioke <aniokechukwudi7@gmail.com>
+Date:   Sat May 4 01:41:05 2024 +0100
+
+    prepared environment
