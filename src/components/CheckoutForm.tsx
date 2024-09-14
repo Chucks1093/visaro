@@ -1,12 +1,14 @@
 import { useState } from "react";
-import {
-  emptyCart,
-  selectCartItems,
-  selectCartTotalPrice,
-} from "../redux/cart/cart.slice";
-import { useAppDispatch, useAppSelector } from "../redux/store";
+import { useMetaMask } from "../../Hooks/useMetaMask";
+// import {
+  // emptyCart,
+  // selectCartItems,
+  // selectCartTotalPrice,
+// } from "../redux/cart/cart.slice";
+import { useAppSelector } from "../redux/store";
 import { useNavigate } from "react-router-dom";
-import { PaystackButton } from "react-paystack";
+import { selectCartTotalPrice } from "../redux/cart/cart.slice";
+// import { PaystackButton } from "react-paystack";
 
 // const sampleSuccess = {
 //   message: "Approved",
@@ -20,45 +22,47 @@ import { PaystackButton } from "react-paystack";
 
 function CheckoutForm() {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
+  const { connectToMetaMask, account, handleDeposit, isConnecting } =
+    useMetaMask();
 
   const EthereumIcon: any = () => {
     return <i className="pi pi-ethereum"></i>;
   };
 
-  const publicKey: string = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY;
+  // const publicKey: string = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY;
   const amount = useAppSelector(selectCartTotalPrice);
-  const items = useAppSelector(selectCartItems);
+  // const items = useAppSelector(selectCartItems);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  const paymentButtonProps = {
-    email,
-    amount: Number(amount) * 100,
-    metadata: {
-      name: `${firstName} ${lastName}`,
-      phone: phoneNumber,
-      custom_fields: [
-        {
-          display_name: "Items Purchased",
-          variable_name: "purchased_items",
-          value: items
-            .map((item) => `${item.quantity} ${item.name}`)
-            .join(", "),
-        },
-      ],
-    },
-    publicKey,
-    text: `Pay - $${amount}`,
-    onSuccess: (transaction: { reference: string }) => {
-      dispatch(emptyCart());
-      navigate(`/checkout?status=paid&ref=${transaction.reference}`);
-    },
-    onClose: () => alert("Payment canceled!"),
-  };
+  // const paymentButtonProps = {
+  //   email,
+  //   amount: Number(amount) * 100,
+  //   metadata: {
+  //     name: `${firstName} ${lastName}`,
+  //     phone: phoneNumber,
+  //     custom_fields: [
+  //       {
+  //         display_name: "Items Purchased",
+  //         variable_name: "purchased_items",
+  //         value: items
+  //           .map((item) => `${item.quantity} ${item.name}`)
+  //           .join(", "),
+  //       },
+  //     ],
+  //   },
+  //   publicKey,
+  //   text: `Pay - $${amount}`,
+  //   onSuccess: (transaction: { reference: string }) => {
+  //     dispatch(emptyCart());
+  //     navigate(`/checkout?status=paid&ref=${transaction.reference}`);
+  //   },
+  //   onClose: () => alert("Payment canceled!"),
+  // };
 
   return (
     <form onSubmit={(e) => e.preventDefault()}>
@@ -119,11 +123,11 @@ function CheckoutForm() {
       </div>
 
       <div className="my-4 flex flex-col items-center gap-2 lg:flex-row">
-        {!email ||
+        {/* {!email ||
         !email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g) ||
         !firstName ? (
           <button
-            disabled
+           onClick={connectToMetaMask}
             className="w-full rounded border-2 border-blue-500 bg-blue-500 py-3 text-center font-bold text-white opacity-70"
           >
             Pay - <EthereumIcon />
@@ -134,6 +138,23 @@ function CheckoutForm() {
             className="w-full rounded border-2 border-blue-500 bg-blue-500 py-3 text-center font-bold text-white"
             {...paymentButtonProps}
           />
+        )} */}
+
+        {!account && !isConnecting ? (
+          <button
+            onClick={connectToMetaMask}
+            className="w-full rounded border-2 border-blue-500 bg-blue-500 py-3 text-center font-bold text-white opacity-70"
+          >
+            Connect wallet
+          </button>
+        ) : (
+          <button
+            onClick={handleDeposit}
+            className="w-full rounded border-2 border-blue-500 bg-blue-500 py-3 text-center font-bold text-white opacity-70"
+          >
+            Deposit - <EthereumIcon />
+            {amount}
+          </button>
         )}
         <button
           onClick={() => navigate("/")}

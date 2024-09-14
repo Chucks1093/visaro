@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import SharedAppLayout from "./components/SharedAppLayout";
 import { Toaster } from "react-hot-toast";
+import 'react-toastify/dist/ReactToastify.css';
 
 // pages
 import Home from "./pages/Home";

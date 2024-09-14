@@ -25,6 +25,7 @@ function Checkout() {
                 </p>
                 <p className="mt-6 text-center font-sans text-base">
                   Check your email for more information.
+                  
                 </p>
               </>
             )}

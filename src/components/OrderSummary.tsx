@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import { selectCartTotalPrice } from "../redux/cart/cart.slice";
 import { useAppSelector } from "../redux/store";
+import { useNavigate } from "react-router-dom";
 
 function OrderSummary() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const cartItemTotalPrice = useAppSelector(selectCartTotalPrice);
 
   const EthereumIcon: any = () => {
@@ -45,7 +45,10 @@ function OrderSummary() {
           {cartItemTotalPrice}
         </h2>
       </div>
-      <button className="mt-4 w-full bg-blue-500 py-3 text-center font-bold text-white">
+      <button
+        onClick={()=>navigate('/checkout')}
+        className="mt-4 w-full bg-blue-500 py-3 text-center font-bold text-white"
+      >
         Checkout
       </button>
     </div>
